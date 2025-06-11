@@ -1,0 +1,10 @@
+.terraform
+*.backup
+*.hcl
+
+
+
+*.exe
+
+*.tf.json
+*.tfstate
