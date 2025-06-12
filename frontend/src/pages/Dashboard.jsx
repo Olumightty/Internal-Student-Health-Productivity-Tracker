@@ -33,8 +33,8 @@ const Dashboard = () => {
     }, [userLogs, loading])
   return (
     <>  
-        {!todaysEntry || loading && <DailyLogForm todaysEntry={null} />}
         <PreviousEntriesTable entries={userLogs} />
+        <DailyLogForm todaysEntry={null} />
     </>
   )
 }

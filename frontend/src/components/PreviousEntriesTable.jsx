@@ -31,13 +31,15 @@ const PreviousEntriesTable = ({ entries }) => {
               {entries.map((entry, index) => (
                 <tr key={entry.createdAt} className={`border-b border-gray-100 hover:bg-gray-50 transition-colors duration-200 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}>
                   <td className="py-4 px-4">
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center space-x-1">
                       <Calendar className="h-4 w-4 text-blue-500" />
                       <span className="font-medium text-gray-800">
                         {new Date(entry.createdAt).toLocaleDateString('en-US', {
                           month: 'short',
                           day: 'numeric',
-                          year: 'numeric'
+                          year: 'numeric',
+                          hour: 'numeric',
+                          minute: 'numeric',  
                         })}
                       </span>
                     </div>

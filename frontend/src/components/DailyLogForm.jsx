@@ -5,7 +5,7 @@ import { useAuthContext } from "./AuthenticationContext";
 
 const DailyLogForm = () => {
     const {user} = useAuthContext()
-    
+
     const [formData, setFormData] = useState({
       productivity: '',
       feedback:  '',
@@ -22,7 +22,7 @@ const DailyLogForm = () => {
       // Handle form submission
     //   onSubmit({ ...formData, date: today });
       try {
-        const request = await axios.post('https://z9fle6zssg.execute-api.us-east-1.amazonaws.com/dev/log', {
+        const request = await axios.post('https://kdl5tq7oh4.execute-api.us-east-1.amazonaws.com/dev/log', {
           userId: user.profile.sub,
           productivity: formData.productivity,
           feedback: formData.feedback,
@@ -30,7 +30,11 @@ const DailyLogForm = () => {
         });
 
         const response = request.data;
-        console.log(response);
+        alert(response.message);
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+        
       } catch (error) {
         console.error('Error submitting daily log:', error);
       }finally{
@@ -110,7 +114,7 @@ const DailyLogForm = () => {
             className="w-full bg-gradient-to-r from-green-500 to-blue-500 text-white py-3 px-6 rounded-lg hover:from-green-600 hover:to-blue-600 transition-all duration-200 font-medium flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Calendar className="h-5 w-5" />
-            <span>{'Save Today\'s Entry'}</span>
+            <span>{'Save Your Entry'}</span>
           </button>
         </form>
       </div>

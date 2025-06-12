@@ -9,7 +9,7 @@ const useUserLogs = () => {
     const fetchUserLogs = async () => {
         setLoading(true);
         try {
-          const response = await axios.get(`https://z9fle6zssg.execute-api.us-east-1.amazonaws.com/dev/log?userId=${user.profile.sub}`);
+          const response = await axios.get(`https://kdl5tq7oh4.execute-api.us-east-1.amazonaws.com/dev/log?userId=${user.profile.sub}`);
           const data = response.data;
           console.log(data);
           setUserLogs(data.logs);
