@@ -49,47 +49,15 @@ The **Neo-Cloud Student Health & Productivity Tracker** is an internal web appli
 
 ```
 team-tracker/
-├── backend/                    # Backend Lambda functions
-│   ├── lambda.py              # Main Lambda handler
-│   ├── requirements.txt       # Python dependencies
-│   └── utils/                 # Utility functions
-│       ├── auth.py           # Authentication helpers
-│       ├── database.py       # DynamoDB operations
-│       └── validators.py     # Input validation
-├── frontend/                   # React frontend application
-│   ├── public/               # Static assets
-│   ├── src/                  # Source code
-│   │   ├── components/       # React components
-│   │   │   ├── Header.jsx
-│   │   │   ├── Hero.jsx
-│   │   │   ├── SignUpForm.jsx
-│   │   │   ├── SignInForm.jsx
-│   │   │   ├── DailyLogForm.jsx
-│   │   │   └── PreviousEntriesTable.jsx
-│   │   ├── hooks/           # Custom React hooks
-│   │   ├── utils/           # Frontend utilities
-│   │   └── App.jsx          # Main application component
-│   ├── package.json         # Node.js dependencies
-│   └── tailwind.config.js   # Tailwind CSS configuration
-├── terraform/                 # Infrastructure as Code
-│   ├── main.tf              # Main Terraform configuration
+├── backend/                  # Backend Lambda functions
+│   ├── addlog.py            # POST Lambda handler
+|   ├── getlog.py            # GET Lambda handler
+├── frontend/                # React frontend application
+├── terraform/               # Infrastructure as Code
 │   ├── variables.tf         # Variable definitions
-│   ├── outputs.tf           # Output values
 │   ├── cognito.tf           # Cognito user pool and client
 │   ├── dynamodb.tf          # DynamoDB table configuration
-│   ├── lambda.tf            # Lambda function resources
-│   ├── api-gateway.tf       # API Gateway configuration
-│   ├── s3.tf                # S3 bucket and CloudFront
-│   ├── iam.tf               # IAM roles and policies
-│   └── cloudwatch.tf        # Monitoring and logging
-├── docs/                     # Documentation
-│   ├── API.md               # API documentation
-│   ├── DEPLOYMENT.md        # Deployment guide
-│   └── ARCHITECTURE.md      # Detailed architecture docs
-├── scripts/                  # Deployment and utility scripts
-│   ├── deploy.sh            # Deployment script
-│   ├── build.sh             # Build script
-│   └── test.sh              # Testing script
+│   ├── gateway.tf           # API Gateway configuration
 └── README.md                # This file
 ```
 
@@ -131,13 +99,6 @@ team-tracker/
    aws s3 sync dist/ s3://your-bucket-name
    ```
 
-5. **Deploy backend functions**
-   ```bash
-   cd ../backend
-   zip -r lambda-function.zip .
-   aws lambda update-function-code --function-name student-tracker --zip-file fileb://lambda-function.zip
-   ```
-
 ## 🔧 Configuration
 
 ### Environment Variables
@@ -153,13 +114,13 @@ REACT_APP_AWS_REGION=us-east-1
 
 ### Terraform Variables
 
-Configure `terraform/terraform.tfvars`:
+Configure `terraform/variables.tf`:
 
 ```hcl
-project_name     = "neo-cloud-tracker"
-environment      = "production"
-aws_region       = "us-east-1"
-domain_name      = "tracker.neo-cloud.com"
+table_name     = ""
+accountID    = ""
+region       = "us-east-1"
+api_name      = ""
 ```
 
 ## 🛠️ Development
@@ -172,14 +133,6 @@ npm install
 npm start          # Start development server
 npm test           # Run tests
 npm run build      # Build for production
-```
-
-### Backend Development
-
-```bash
-cd backend
-pip install -r requirements.txt
-python -m pytest tests/     # Run tests
 ```
 
 ### Local Testing
@@ -196,19 +149,11 @@ cd backend && python lambda.py
 
 - **Multi-factor Authentication** via AWS Cognito
 - **JWT Token-based** session management
-- **Row-level Security** in DynamoDB
 - **HTTPS/TLS** encryption for all communications
 - **CORS** properly configured
 - **Input Validation** and sanitization
-- **Rate Limiting** on API endpoints
 
 ## 📊 API Endpoints
-
-### Authentication
-- `POST /auth/signup` - User registration
-- `POST /auth/signin` - User login
-- `POST /auth/signout` - User logout
-- `POST /auth/refresh` - Refresh JWT token
 
 ### User Data
 - `GET /logs` - Retrieve user's log entries
@@ -216,61 +161,14 @@ cd backend && python lambda.py
 - `PUT /logs/{id}` - Update existing log entry
 - `DELETE /logs/{id}` - Delete log entry
 
-### Health Check
-- `GET /health` - API health status
-
-## 🚀 Deployment
-
-### Automated Deployment
-
-```bash
-# Deploy everything
-./scripts/deploy.sh
-
-# Deploy only infrastructure
-./scripts/deploy.sh --infra-only
-
-# Deploy only application
-./scripts/deploy.sh --app-only
-```
-
 ### Manual Deployment
 
 1. **Infrastructure**: `cd terraform && terraform apply`
-2. **Backend**: Deploy Lambda functions via AWS CLI
 3. **Frontend**: Build and sync to S3
 
 ## 📈 Monitoring
 
 - **CloudWatch Dashboards** for application metrics
-- **Error Tracking** and alerting
-- **Performance Monitoring** for API response times
-- **User Analytics** and usage patterns
-- **Cost Monitoring** and optimization
-
-## 🧪 Testing
-
-### Unit Tests
-```bash
-cd frontend && npm test
-cd backend && python -m pytest
-```
-
-### Integration Tests
-```bash
-./scripts/test.sh --integration
-```
-
-### End-to-End Tests
-```bash
-./scripts/test.sh --e2e
-```
-
-## 📚 Documentation
-
-- [API Documentation](docs/API.md)
-- [Deployment Guide](docs/DEPLOYMENT.md)
-- [Architecture Details](docs/ARCHITECTURE.md)
 
 ## 🤝 Contributing
 
@@ -284,22 +182,5 @@ cd backend && python -m pytest
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🆘 Support
 
-For support and questions:
-- **Email**: support@neo-cloud.com
-- **Slack**: #student-tracker
-- **Issues**: GitHub Issues tab
-
-## 🔄 Changelog
-
-### v1.0.0 (2025-06-10)
-- Initial release
-- Basic authentication and logging features
-- Responsive React frontend
-- AWS serverless backend
-- Terraform infrastructure
-
----
-
-**Built with ❤️ by the Neo-Cloud Team**
+**Built with ❤️ by the Ayoola Olumide & Busolami Oreoluwa**
