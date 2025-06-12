@@ -114,7 +114,7 @@ REACT_APP_AWS_REGION=us-east-1
 
 ### Terraform Variables
 
-Configure `terraform/variables.tf`:
+Configure `terraform/variables.tf` add your own values:
 
 ```hcl
 table_name     = ""
