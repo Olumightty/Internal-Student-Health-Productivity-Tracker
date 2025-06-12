@@ -148,60 +148,60 @@ resource "aws_api_gateway_method_response" "post_log" {
   }
 }
 
-# # Method: OPTIONS /log
-# resource "aws_api_gateway_method" "options_log" {
-#   rest_api_id = aws_api_gateway_rest_api.log_api.id
-#   resource_id = aws_api_gateway_resource.log_resource.id
-#   http_method   = "OPTIONS"
-#   authorization = "NONE"
-# }
+# Method: OPTIONS /log
+resource "aws_api_gateway_method" "options_log" {
+  rest_api_id = aws_api_gateway_rest_api.log_api.id
+  resource_id = aws_api_gateway_resource.log_resource.id
+  http_method   = "OPTIONS"
+  authorization = "NONE"
+}
 
-# # Integration: OPTIONS /log -> MOCK
-# resource "aws_api_gateway_integration" "options_log" {
-#   rest_api_id = aws_api_gateway_rest_api.log_api.id
-#   resource_id = aws_api_gateway_resource.log_resource.id
-#   http_method = aws_api_gateway_method.options_log.http_method
-#   type        = "MOCK"
-#   request_templates = {
-#     "application/json" = "{\"statusCode\": 200}"
-#   }
-# }
+# Integration: OPTIONS /log -> MOCK
+resource "aws_api_gateway_integration" "options_log" {
+  rest_api_id = aws_api_gateway_rest_api.log_api.id
+  resource_id = aws_api_gateway_resource.log_resource.id
+  http_method = aws_api_gateway_method.options_log.http_method
+  type        = "MOCK"
+  request_templates = {
+    "application/json" = "{\"statusCode\": 200}"
+  }
+}
 
-# # Method: OPTIONS -> CORS Response
-# resource "aws_api_gateway_method_response" "options_log" {
-#   rest_api_id = aws_api_gateway_rest_api.log_api.id
-#   resource_id = aws_api_gateway_resource.log_resource.id
-#   http_method = aws_api_gateway_method.options_log.http_method
-#   status_code = "200"
+# Method: OPTIONS -> CORS Response
+resource "aws_api_gateway_method_response" "options_log" {
+  rest_api_id = aws_api_gateway_rest_api.log_api.id
+  resource_id = aws_api_gateway_resource.log_resource.id
+  http_method = aws_api_gateway_method.options_log.http_method
+  status_code = "200"
 
-#   response_parameters = {
-#     "method.response.header.Access-Control-Allow-Headers" = true
-#     "method.response.header.Access-Control-Allow-Methods" = true
-#     "method.response.header.Access-Control-Allow-Origin"  = true
-#   }
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Headers" = true
+    "method.response.header.Access-Control-Allow-Methods" = true
+    "method.response.header.Access-Control-Allow-Origin"  = true
+  }
 
-#   response_models = {
-#     "application/json" = "Empty"
-#   }
-# }
+  response_models = {
+    "application/json" = "Empty"
+  }
+}
 
-# # Integration: OPTIONS -> CORS Response
-# resource "aws_api_gateway_integration_response" "options_log" {
-#   rest_api_id = aws_api_gateway_rest_api.log_api.id
-#   resource_id = aws_api_gateway_resource.log_resource.id
-#   http_method = aws_api_gateway_method.options_log.http_method
-#   status_code = aws_api_gateway_method_response.options_log.status_code
+# Integration: OPTIONS -> CORS Response
+resource "aws_api_gateway_integration_response" "options_log" {
+  rest_api_id = aws_api_gateway_rest_api.log_api.id
+  resource_id = aws_api_gateway_resource.log_resource.id
+  http_method = aws_api_gateway_method.options_log.http_method
+  status_code = aws_api_gateway_method_response.options_log.status_code
 
-#   response_parameters = {
-#     "method.response.header.Access-Control-Allow-Headers" = "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
-#     "method.response.header.Access-Control-Allow-Methods" = "'GET,POST,OPTIONS'"
-#     "method.response.header.Access-Control-Allow-Origin"  = "'*'"
-#   }
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Headers" = "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+    "method.response.header.Access-Control-Allow-Methods" = "'POST,OPTIONS'"
+    "method.response.header.Access-Control-Allow-Origin"  = "'*'"
+  }
 
-#   response_templates = {
-#     "application/json" = ""
-#   }
-# }
+  response_templates = {
+    "application/json" = ""
+  }
+}
 
 # Lambda permissions for API Gateway to invoke
 resource "aws_lambda_permission" "allow_get_api" {

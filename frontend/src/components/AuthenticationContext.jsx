@@ -1,5 +1,6 @@
 import { createContext, useContext } from "react";
 import { useAuth } from "react-oidc-context";
+import { useLocation } from "react-router-dom";
 
 export const AuthenticationContext = createContext({
     user: null,
@@ -9,7 +10,9 @@ export const AuthenticationContext = createContext({
 });
 
 export const AuthenticationProvider = ({ children }) => {
+  const path = useLocation().pathname
   const {isAuthenticated, user, isLoading, error, signinRedirect, removeUser} = useAuth()
+  
 
   const signOut = () => {
     const clientId = import.meta.env.VITE_COGNITO_CLIENT_ID;
@@ -19,6 +22,7 @@ export const AuthenticationProvider = ({ children }) => {
     window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
   };
 
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -27,11 +31,15 @@ export const AuthenticationProvider = ({ children }) => {
     return <div>Encountering error... {error.message}</div>;
   }
 
-  if (!isAuthenticated && window.location.href !== "http://localhost:5173/") {
-
-    window.location.href = "http://localhost:5173/";
+  if (!isLoading && !isAuthenticated && path != "/") {
+    //do a redirect back to the home page
+    window.location.href = import.meta.env.VITE_APP_MODE == "production" ? import.meta.env.VITE_APP_URL: "http://localhost:5173/";
     return <div className="text-lg text-red-500 font-semibold">Not Authenticated</div>;
   }
+
+  
+
+  
 
   
 
