@@ -30,7 +30,7 @@ const Dashboard = () => {
       console.log(date);
       const entry = userLogs.find(entry => String(entry.createdAt).split('T')[0] === date);
       setTodaysEntry(entry);
-    }, [userLogs, loading])
+    }, [userLogs, loading, todaysEntry]);
   return (
     <>  
         <PreviousEntriesTable entries={userLogs} />

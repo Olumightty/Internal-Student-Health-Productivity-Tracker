@@ -22,7 +22,7 @@ const DailyLogForm = () => {
       // Handle form submission
     //   onSubmit({ ...formData, date: today });
       try {
-        const request = await axios.post('https://kdl5tq7oh4.execute-api.us-east-1.amazonaws.com/dev/log', {
+        const request = await axios.post(import.meta.env.VITE_API_GATEWAY_URL, {
           userId: user.profile.sub,
           productivity: formData.productivity,
           feedback: formData.feedback,

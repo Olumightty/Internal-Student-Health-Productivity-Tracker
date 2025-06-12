@@ -21,3 +21,15 @@ variable "api_name"{
     type        = string
     default     = "health-productivity-api"
 }
+
+variable "bucket_name"{
+    description = "Name of S3 Bucket"
+    type        = string
+    default     = "health-prod-frontend-v1"
+}
+
+variable "redirect_url"{
+    description = "The Cognito Redirect URL"
+    type        = string
+    default     = "https://d30xeei1hb1sab.cloudfront.net"
+}

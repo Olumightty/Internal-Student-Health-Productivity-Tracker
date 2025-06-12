@@ -26,12 +26,12 @@ resource "aws_cognito_user_pool_client" "user_pool_client" {
 
   callback_urls = [
     "http://localhost:5173/",
-    # "https://your-production-site.com/" # Add more if needed
+    "${var.redirect_url}" # Add more if needed
   ]
 
   logout_urls = [
     "http://localhost:5173/",
-    # "https://your-production-site.com/"
+    "${var.redirect_url}"
   ]
 }
 
