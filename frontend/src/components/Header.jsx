@@ -1,20 +1,21 @@
 import { BookOpen, LogIn, User, UserPlus } from "lucide-react";
-import { NavLink} from "react-router-dom";
+import { NavLink, useNavigate} from "react-router-dom";
 import { useAuthContext } from "./AuthenticationContext";
 
 const Header = () => {
   const {signOut, user, signIn, isAuthenticated} = useAuthContext()
+  const nav = useNavigate();
     
     return (
       <header className="bg-gradient-to-r from-blue-600 to-purple-700 sticky  top-0 left-0 shadow-2xl z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
-            <div className="flex items-center space-x-3">
-              <div className="bg-white/20 p-2 rounded-lg">
-                <BookOpen className="h-6 w-6 text-white" />
+            <div onClick={() => nav('/')} className="flex items-center space-x-3 cursor-pointer">
+              <div className="bg-white/20  rounded-lg">
+                <img src="/logo-icon-w.png" alt="logo" className="h-12 w-12" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-white">Neo-Cloud Tracker</h1>
+                <h1 className="text-xl font-bold text-white">Neo Cloud Tracker</h1>
                 <p className="text-blue-100 text-sm">Student Health & Productivity</p>
               </div>
             </div>
