@@ -30,7 +30,9 @@ def lambda_handler(event, context):
             }
 
         if get_all == 'true':
-            response = table.scan()
+            response = table.scan(
+                FilterExpression=Attr('userId').ne(user_id)
+            )
             print(response['Items'])
 
             return {

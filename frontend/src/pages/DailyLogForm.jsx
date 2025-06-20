@@ -1,10 +1,13 @@
 import axios from "axios";
 import { AlertTriangle, BookOpen, Calendar, MessageSquare } from "lucide-react";
 import { useState } from "react";
-import { useAuthContext } from "./AuthenticationContext";
+import { useAuthContext } from "../components/AuthenticationContext";
+import NaV from "../components/NaV";
+import { useNavigate } from "react-router-dom";
 
 const DailyLogForm = () => {
     const {user} = useAuthContext()
+    const nav = useNavigate();
 
     const [formData, setFormData] = useState({
       productivity: '',
@@ -32,10 +35,11 @@ const DailyLogForm = () => {
         const response = request.data;
         alert(response.message);
         setTimeout(() => {
-          window.location.reload();
+          nav('/myLogs');
         }, 1000);
         
       } catch (error) {
+        alert("Failed to submit daily log. Please try again.");
         console.error('Error submitting daily log:', error);
       }finally{
         setLoading(false);
@@ -43,6 +47,8 @@ const DailyLogForm = () => {
     };
   
     return (
+      <>
+      <NaV/>
       <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
         <div className="flex items-center space-x-3 mb-6">
           <div className="bg-gradient-to-r from-green-500 to-blue-500 p-2 rounded-lg">
@@ -118,6 +124,7 @@ const DailyLogForm = () => {
           </button>
         </form>
       </div>
+      </>
     );
   };
 

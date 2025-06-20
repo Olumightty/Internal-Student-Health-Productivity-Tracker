@@ -15,8 +15,7 @@ const PreviousEntriesTable = ({ entries }) => {
     }
   
     return (
-      <div className="bg-white rounded-2xl shadow-lg p-8">
-        <h3 className="text-xl font-bold text-gray-800 mb-6">Entries</h3>
+      <div className="bg-white rounded-2xl shadow-lg px-8">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
@@ -28,7 +27,7 @@ const PreviousEntriesTable = ({ entries }) => {
               </tr>
             </thead>
             <tbody>
-              {entries.map((entry, index) => (
+              {entries.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map((entry, index) => (
                 <tr key={entry.createdAt} className={`border-b border-gray-100 hover:bg-gray-50 transition-colors duration-200 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}>
                   <td className="py-4 px-4">
                     <div className="flex items-center space-x-1">

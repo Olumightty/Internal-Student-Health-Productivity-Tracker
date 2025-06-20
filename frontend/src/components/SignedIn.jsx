@@ -33,9 +33,9 @@ const SignedIn = () => {
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button onClick={() => nav('/dashboard')} className="group bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-medium text-lg transition-all duration-200 flex items-center justify-center">
+          <button onClick={() => nav('/myLogs')} className="group bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-medium text-lg transition-all duration-200 flex items-center justify-center">
             <BookOpen className="w-5 h-5 mr-2" />
-            Dashboard
+            My Logs
             <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
           </button>
           

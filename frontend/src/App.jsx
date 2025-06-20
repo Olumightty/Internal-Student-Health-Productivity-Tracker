@@ -3,6 +3,8 @@ import Header from "./components/Header"
 import Dashboard from "./pages/Dashboard"
 import { AuthenticationProvider } from "./components/AuthenticationContext"
 import Hero from "./pages/Hero"
+import Insight from "./pages/Insight"
+import DailyLogForm from "./pages/DailyLogForm"
 
 function App() {
  
@@ -16,7 +18,10 @@ function App() {
             {/* Other components and routes will go here */}
             <Routes>
                 <Route path="/" element={<Hero/>} />
-                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/myLogs" element={<Dashboard />} />
+                <Route path="/insights" element={<Insight />} />
+                <Route path="/create" element={<DailyLogForm />} />
+                <Route path="*" element={<Hero />} />
             </Routes>
           </AuthenticationProvider>
         </div>
