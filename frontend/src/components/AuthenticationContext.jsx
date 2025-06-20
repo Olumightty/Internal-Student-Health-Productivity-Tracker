@@ -1,6 +1,7 @@
 import { createContext, useContext } from "react";
 import { useAuth } from "react-oidc-context";
 import { useLocation } from "react-router-dom";
+import CustomLoader from "./CustomLoader";
 
 export const AuthenticationContext = createContext({
     user: null,
@@ -24,7 +25,7 @@ export const AuthenticationProvider = ({ children }) => {
 
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <CustomLoader/>
   }
 
   if (error) {
