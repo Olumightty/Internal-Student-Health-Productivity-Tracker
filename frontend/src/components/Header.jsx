@@ -3,7 +3,7 @@ import { NavLink} from "react-router-dom";
 import { useAuthContext } from "./AuthenticationContext";
 
 const Header = () => {
-  const {signOut, user, signIn} = useAuthContext()
+  const {signOut, user, signIn, isAuthenticated} = useAuthContext()
     
     return (
       <header className="bg-gradient-to-r from-blue-600 to-purple-700 sticky  top-0 left-0 shadow-2xl z-30">
@@ -19,7 +19,7 @@ const Header = () => {
               </div>
             </div>
             
-            {user ? (
+            {user && isAuthenticated ? (
               <div className="flex items-center space-x-4">
                 <div className="flex items-center space-x-2 bg-white/10 px-3 py-2 rounded-lg">
                   <User className="h-4 w-4 text-white" />
