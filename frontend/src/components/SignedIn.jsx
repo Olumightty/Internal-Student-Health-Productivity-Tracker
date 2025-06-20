@@ -27,7 +27,7 @@ const SignedIn = () => {
           
           <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Monitor your daily productivity, log your learning achievements, 
-            and stay on top of your Neo-Cloud journey.
+            and stay on top of your Neo Cloud journey.
           </p>
         </div>
 
@@ -60,8 +60,8 @@ const SignedIn = () => {
             <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
               <BarChart3 className="w-6 h-6 text-green-600" />
             </div>
-            <h3 className="font-semibold text-gray-900 mb-2">Progress Insights</h3>
-            <p className="text-gray-600 text-sm">Visualize your growth over time</p>
+            <h3 className="font-semibold text-gray-900 mb-2">View Insights</h3>
+            <p className="text-gray-600 text-sm">See others' progress as well</p>
           </div>
           
           <div className="p-6">

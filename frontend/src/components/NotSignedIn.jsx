@@ -9,15 +9,15 @@ const NotSignedIn = () => {
   const {signIn} = useAuthContext()
 
   const stats = [
-    { number: '2,500+', label: 'Students Tracking', icon: Users },
-    { number: '15,000+', label: 'Daily Logs', icon: Calendar },
-    { number: '95%', label: 'Success Rate', icon: TrendingUp },
-    { number: '100%', label: 'Secure & Private', icon: Shield }
+    { number: 'nil', label: 'Students Tracking', icon: Users },
+    { number: 'nil', label: 'Daily Logs', icon: Calendar },
+    { number: 'nil', label: 'Success Rate', icon: TrendingUp },
+    { number: '100%', label: 'Secure', icon: Shield }
   ];
 
   const features = [
     { icon: BookOpen, title: 'Track Learning', desc: 'Log daily progress and achievements' },
-    { icon: Heart, title: 'Monitor Wellbeing', desc: 'Keep track of your mental health' },
+    { icon: Heart, title: 'Monitor Student Wellbeing', desc: 'It is a psychological initiative' },
     { icon: Target, title: 'Identify Blockers', desc: 'Spot and overcome obstacles early' }
   ];
 
@@ -67,7 +67,7 @@ const NotSignedIn = () => {
             
             <p className="text-xl md:text-2xl text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed">
               Empower your growth with our comprehensive productivity tracker. Monitor your learning progress, 
-              identify blockers, and maintain your wellbeing throughout your Neo-Cloud journey.
+              identify blockers, and maintain your wellbeing throughout your Neo Cloud journey.
             </p>
 
             {/* CTA Buttons */}
@@ -128,7 +128,7 @@ const NotSignedIn = () => {
         <div className="text-center pb-20">
           <div className="inline-flex items-center space-x-2 text-white/60 text-sm">
             <Shield className="w-4 h-4" />
-            <span>Your data is secure and private</span>
+            <span>Your data is secure</span>
           </div>
         </div>
       </div>
