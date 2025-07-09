@@ -9,9 +9,13 @@ const useAllLogs = () => {
     const fetchUserLogs = async () => {
         setLoading(true);
         try {
-          const response = await axios.get(`${import.meta.env.VITE_API_GATEWAY_URL}?userId=${user.profile.sub}&getAll=true`);
+          const response = await axios.get(`${import.meta.env.VITE_API_GATEWAY_URL}?userId=${user.profile.sub}&getAll=true`, {
+            headers:{
+              Authorization: `Bearer ${user.id_token}`
+            }
+          });
           const data = response.data;
-          console.log(data);
+          // console.log(data);
           setAllLogs(data.logs);
           
         } catch (error) {

@@ -29,7 +29,11 @@ const DailyLogForm = () => {
           userId: user.profile.sub,
           productivity: formData.productivity,
           feedback: formData.feedback,
-          blockers: formData.blockers
+          blockers: formData.blockers,
+        }, {
+          headers: {
+            Authorization: `Bearer ${user.id_token}`
+          }
         });
 
         const response = request.data;

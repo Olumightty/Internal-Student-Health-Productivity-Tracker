@@ -67,6 +67,15 @@ resource "aws_api_gateway_rest_api" "log_api" {
   name = var.api_name
 }
 
+# Add Cognito Authorizer to secure the API
+resource "aws_api_gateway_authorizer" "cognito_authorizer" {
+  name                    = "StudentCognitoAuthorizer"
+  rest_api_id             = aws_api_gateway_rest_api.log_api.id
+  identity_source         = "method.request.header.Authorization"
+  type                    = "COGNITO_USER_POOLS"
+  provider_arns           = [aws_cognito_user_pool.user_pool.arn]
+}
+
 # Resource: /log
 resource "aws_api_gateway_resource" "log_resource" {
   rest_api_id = aws_api_gateway_rest_api.log_api.id
@@ -79,7 +88,8 @@ resource "aws_api_gateway_method" "get_log" {
   rest_api_id   = aws_api_gateway_rest_api.log_api.id
   resource_id   = aws_api_gateway_resource.log_resource.id
   http_method   = "GET"
-  authorization = "NONE"
+  authorization = "COGNITO_USER_POOLS"
+  authorizer_id = aws_api_gateway_authorizer.cognito_authorizer.id
 }
 
 # Integration: GET /log -> Lambda
@@ -116,7 +126,8 @@ resource "aws_api_gateway_method" "post_log" {
   rest_api_id   = aws_api_gateway_rest_api.log_api.id
   resource_id   = aws_api_gateway_resource.log_resource.id
   http_method   = "POST"
-  authorization = "NONE"
+  authorization = "COGNITO_USER_POOLS"
+  authorizer_id = aws_api_gateway_authorizer.cognito_authorizer.id
 }
 
 # Integration: POST /log -> Lambda
@@ -194,7 +205,7 @@ resource "aws_api_gateway_integration_response" "options_log" {
 
   response_parameters = {
     "method.response.header.Access-Control-Allow-Headers" = "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
-    "method.response.header.Access-Control-Allow-Methods" = "'POST,OPTIONS'"
+    "method.response.header.Access-Control-Allow-Methods" = "'POST,OPTIONS,GET'"
     "method.response.header.Access-Control-Allow-Origin"  = "'*'"
   }
 
