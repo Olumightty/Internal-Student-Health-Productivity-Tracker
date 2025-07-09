@@ -15,7 +15,7 @@ const Header = () => {
                 <img src="/logo-icon-w.png" alt="logo" className="h-12 w-12" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-white">Neo Cloud Tracker</h1>
+                <h1 className="text-xl font-bold text-white">Neo-SHP Tracker</h1>
                 <p className="text-blue-100 text-sm">Student Health & Productivity</p>
               </div>
             </div>
